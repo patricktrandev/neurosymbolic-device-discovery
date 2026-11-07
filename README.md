@@ -157,11 +157,10 @@ git clone <repository-url>
 cd neurosymbolic-device-discovery
 ```
 
-Create a virtual environment on Windows:
+Create a virtual environment and activate it:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
 ```
 
 Install the project and development dependencies:
@@ -262,6 +261,3 @@ The study will also examine cases where symbolic constraints or adaptive queryin
 
 ## 11. Future Work
 
-The next steps are to implement a PyTorch MLP, compare it with the probabilistic baseline, integrate symbolic constraints, and evaluate adaptive query selection under controlled query budgets.
-
-The long-term goal is to understand when learned predictions, explicit domain knowledge, and selective evidence gathering complement one another, and when simpler methods are sufficient.
