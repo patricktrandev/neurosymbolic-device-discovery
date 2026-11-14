@@ -1,0 +1,531 @@
+{
+  "experiment": "phase_3_7",
+  "train_path": "data/generated/moderate/train.csv",
+  "val_path": "data/generated/moderate/val.csv",
+  "alpha": 1.0,
+  "missingness": {
+    "n_observations": 1120,
+    "n_probes": 7,
+    "overall_missing_rate": 0.7704081632653061,
+    "mean_observed_probes": 1.6071428571428572,
+    "per_probe": {
+      "vendor_hint": {
+        "present": 244,
+        "missing": 876,
+        "missing_rate": 0.7821428571428571
+      },
+      "routing_enabled": {
+        "present": 250,
+        "missing": 870,
+        "missing_rate": 0.7767857142857143
+      },
+      "lldp_enabled": {
+        "present": 257,
+        "missing": 863,
+        "missing_rate": 0.7705357142857143
+      },
+      "snmp_available": {
+        "present": 271,
+        "missing": 849,
+        "missing_rate": 0.7580357142857143
+      },
+      "interface_count_band": {
+        "present": 260,
+        "missing": 860,
+        "missing_rate": 0.7678571428571429
+      },
+      "vlan_capable": {
+        "present": 253,
+        "missing": 867,
+        "missing_rate": 0.7741071428571429
+      },
+      "firmware_family": {
+        "present": 265,
+        "missing": 855,
+        "missing_rate": 0.7633928571428571
+      }
+    },
+    "observed_probe_count_distribution": {
+      "0": 39,
+      "1": 362,
+      "2": 719
+    }
+  },
+  "naive_bayes_sparse": {
+    "n_samples": 240,
+    "accuracy": 0.2916666666666667,
+    "macro_f1": 0.2916929382093316,
+    "labels": [
+      "arista_router",
+      "arista_switch",
+      "cisco_router",
+      "cisco_switch",
+      "hpe_router",
+      "hpe_switch",
+      "juniper_router",
+      "juniper_switch"
+    ],
+    "confusion_matrix": [
+      [
+        10,
+        4,
+        4,
+        2,
+        4,
+        5,
+        1,
+        0
+      ],
+      [
+        10,
+        7,
+        4,
+        1,
+        1,
+        7,
+        0,
+        0
+      ],
+      [
+        10,
+        2,
+        9,
+        3,
+        2,
+        3,
+        1,
+        0
+      ],
+      [
+        2,
+        7,
+        3,
+        7,
+        1,
+        9,
+        1,
+        0
+      ],
+      [
+        3,
+        2,
+        6,
+        2,
+        6,
+        9,
+        2,
+        0
+      ],
+      [
+        3,
+        5,
+        1,
+        2,
+        3,
+        16,
+        0,
+        0
+      ],
+      [
+        5,
+        4,
+        2,
+        1,
+        5,
+        1,
+        6,
+        6
+      ],
+      [
+        5,
+        4,
+        2,
+        1,
+        4,
+        4,
+        1,
+        9
+      ]
+    ],
+    "classification_report": {
+      "arista_router": {
+        "precision": 0.20833333333333334,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.2564102564102564,
+        "support": 30.0
+      },
+      "arista_switch": {
+        "precision": 0.2,
+        "recall": 0.23333333333333334,
+        "f1-score": 0.2153846153846154,
+        "support": 30.0
+      },
+      "cisco_router": {
+        "precision": 0.2903225806451613,
+        "recall": 0.3,
+        "f1-score": 0.29508196721311475,
+        "support": 30.0
+      },
+      "cisco_switch": {
+        "precision": 0.3684210526315789,
+        "recall": 0.23333333333333334,
+        "f1-score": 0.2857142857142857,
+        "support": 30.0
+      },
+      "hpe_router": {
+        "precision": 0.23076923076923078,
+        "recall": 0.2,
+        "f1-score": 0.21428571428571427,
+        "support": 30.0
+      },
+      "hpe_switch": {
+        "precision": 0.2962962962962963,
+        "recall": 0.5333333333333333,
+        "f1-score": 0.38095238095238093,
+        "support": 30.0
+      },
+      "juniper_router": {
+        "precision": 0.5,
+        "recall": 0.2,
+        "f1-score": 0.2857142857142857,
+        "support": 30.0
+      },
+      "juniper_switch": {
+        "precision": 0.6,
+        "recall": 0.3,
+        "f1-score": 0.4,
+        "support": 30.0
+      },
+      "accuracy": 0.2916666666666667,
+      "macro avg": {
+        "precision": 0.3367678117094501,
+        "recall": 0.2916666666666667,
+        "f1-score": 0.2916929382093316,
+        "support": 240.0
+      },
+      "weighted avg": {
+        "precision": 0.3367678117094501,
+        "recall": 0.2916666666666667,
+        "f1-score": 0.2916929382093316,
+        "support": 240.0
+      }
+    }
+  },
+  "probe_diagnostics": {
+    "firmware_to_vendor": {
+      "generic_network_os": {
+        "n": 84,
+        "distribution": {
+          "arista": 0.20238095238095238,
+          "cisco": 0.2619047619047619,
+          "hpe": 0.2857142857142857,
+          "juniper": 0.25
+        }
+      },
+      "network_os_a": {
+        "n": 40,
+        "distribution": {
+          "arista": 0.025,
+          "cisco": 0.975,
+          "hpe": 0.0,
+          "juniper": 0.0
+        }
+      },
+      "network_os_b": {
+        "n": 42,
+        "distribution": {
+          "arista": 0.0,
+          "cisco": 0.07142857142857142,
+          "hpe": 0.0,
+          "juniper": 0.9285714285714286
+        }
+      },
+      "network_os_c": {
+        "n": 49,
+        "distribution": {
+          "arista": 0.8571428571428571,
+          "cisco": 0.04081632653061224,
+          "hpe": 0.02040816326530612,
+          "juniper": 0.08163265306122448
+        }
+      },
+      "network_os_d": {
+        "n": 50,
+        "distribution": {
+          "arista": 0.06,
+          "cisco": 0.02,
+          "hpe": 0.92,
+          "juniper": 0.0
+        }
+      }
+    },
+    "interface_to_role": {
+      "high": {
+        "n": 85,
+        "distribution": {
+          "router": 0.1411764705882353,
+          "switch": 0.8588235294117647
+        }
+      },
+      "low": {
+        "n": 70,
+        "distribution": {
+          "router": 0.9285714285714286,
+          "switch": 0.07142857142857142
+        }
+      },
+      "medium": {
+        "n": 105,
+        "distribution": {
+          "router": 0.49523809523809526,
+          "switch": 0.5047619047619047
+        }
+      }
+    },
+    "routing_to_role": {
+      "False": {
+        "n": 95,
+        "distribution": {
+          "router": 0.16842105263157894,
+          "switch": 0.8315789473684211
+        }
+      },
+      "True": {
+        "n": 155,
+        "distribution": {
+          "router": 0.6967741935483871,
+          "switch": 0.3032258064516129
+        }
+      }
+    },
+    "vlan_to_role": {
+      "False": {
+        "n": 58,
+        "distribution": {
+          "router": 0.9310344827586207,
+          "switch": 0.06896551724137931
+        }
+      },
+      "True": {
+        "n": 195,
+        "distribution": {
+          "router": 0.39487179487179486,
+          "switch": 0.6051282051282051
+        }
+      }
+    },
+    "vendor_hint_to_vendor": {
+      "arista": {
+        "n": 50,
+        "distribution": {
+          "arista": 0.96,
+          "cisco": 0.0,
+          "hpe": 0.02,
+          "juniper": 0.02
+        }
+      },
+      "cisco": {
+        "n": 46,
+        "distribution": {
+          "arista": 0.021739130434782608,
+          "cisco": 0.9565217391304348,
+          "hpe": 0.0,
+          "juniper": 0.021739130434782608
+        }
+      },
+      "hpe": {
+        "n": 36,
+        "distribution": {
+          "arista": 0.08333333333333333,
+          "cisco": 0.027777777777777776,
+          "hpe": 0.8888888888888888,
+          "juniper": 0.0
+        }
+      },
+      "juniper": {
+        "n": 55,
+        "distribution": {
+          "arista": 0.03636363636363636,
+          "cisco": 0.0,
+          "hpe": 0.0,
+          "juniper": 0.9636363636363636
+        }
+      },
+      "unknown": {
+        "n": 57,
+        "distribution": {
+          "arista": 0.2631578947368421,
+          "cisco": 0.3157894736842105,
+          "hpe": 0.12280701754385964,
+          "juniper": 0.2982456140350877
+        }
+      }
+    }
+  },
+  "naive_bayes_full": {
+    "n_samples": 240,
+    "accuracy": 0.7958333333333333,
+    "macro_f1": 0.7967023115833639,
+    "labels": [
+      "arista_router",
+      "arista_switch",
+      "cisco_router",
+      "cisco_switch",
+      "hpe_router",
+      "hpe_switch",
+      "juniper_router",
+      "juniper_switch"
+    ],
+    "confusion_matrix": [
+      [
+        21,
+        2,
+        5,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        7,
+        21,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        27,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        8,
+        21,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        0,
+        25,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        2,
+        27,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        27,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        22
+      ]
+    ],
+    "classification_report": {
+      "arista_router": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1-score": 0.7241379310344828,
+        "support": 30.0
+      },
+      "arista_switch": {
+        "precision": 0.9130434782608695,
+        "recall": 0.7,
+        "f1-score": 0.7924528301886793,
+        "support": 30.0
+      },
+      "cisco_router": {
+        "precision": 0.6136363636363636,
+        "recall": 0.9,
+        "f1-score": 0.7297297297297297,
+        "support": 30.0
+      },
+      "cisco_switch": {
+        "precision": 0.875,
+        "recall": 0.7,
+        "f1-score": 0.7777777777777778,
+        "support": 30.0
+      },
+      "hpe_router": {
+        "precision": 0.8928571428571429,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.8620689655172413,
+        "support": 30.0
+      },
+      "hpe_switch": {
+        "precision": 0.84375,
+        "recall": 0.9,
+        "f1-score": 0.8709677419354839,
+        "support": 30.0
+      },
+      "juniper_router": {
+        "precision": 0.7714285714285715,
+        "recall": 0.9,
+        "f1-score": 0.8307692307692308,
+        "support": 30.0
+      },
+      "juniper_switch": {
+        "precision": 0.8461538461538461,
+        "recall": 0.7333333333333333,
+        "f1-score": 0.7857142857142857,
+        "support": 30.0
+      },
+      "accuracy": 0.7958333333333333,
+      "macro avg": {
+        "precision": 0.8132336752920992,
+        "recall": 0.7958333333333334,
+        "f1-score": 0.7967023115833639,
+        "support": 240.0
+      },
+      "weighted avg": {
+        "precision": 0.8132336752920992,
+        "recall": 0.7958333333333333,
+        "f1-score": 0.7967023115833638,
+        "support": 240.0
+      }
+    }
+  },
+  "full_evidence_signatures": {
+    "n_full_observations": 240,
+    "n_unique_signatures": 129,
+    "ambiguous_signatures": 19,
+    "empirical_signature_upper_bound": 0.8916666666666667
+  }
+}

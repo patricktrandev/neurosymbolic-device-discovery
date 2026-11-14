@@ -1,0 +1,33 @@
+{
+  "experiment": "final_held_out_test",
+  "test_path": "data/generated/moderate/test.csv",
+  "ground_truth_path": "data/generated/moderate/ground_truth.json",
+  "test_size": 240,
+  "lambda": 0.5,
+  "fractions": [
+    5,
+    10,
+    25,
+    50,
+    100
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "conditions": [
+    "neural",
+    "correct",
+    "corrupt_routing",
+    "corrupt_all"
+  ],
+  "note": "Ground truth is used only for evaluation. Checkpoints and symbolic rules are frozen. Confidence intervals describe training-seed variation on one fixed synthetic test set."
+}

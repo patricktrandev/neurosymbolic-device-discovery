@@ -16,3 +16,10 @@ VENDOR_FIRMWARE_DISTRIBUTIONS = {
     Vendor.ARISTA: {"network_os_c": 0.70, "generic_network_os": 0.30},
     Vendor.HPE: {"network_os_d": 0.70, "generic_network_os": 0.30},
 }
+
+# Role-independent probe probabilities.
+LLDP_ENABLED_PROBABILITY = 0.85
+SNMP_AVAILABLE_PROBABILITY = 0.90
+
+# Fraction of devices whose vendor hint is "unknown".
+VENDOR_HINT_UNKNOWN_PROBABILITY = 0.25

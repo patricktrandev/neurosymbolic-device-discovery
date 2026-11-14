@@ -1,0 +1,21 @@
+{
+  "experiment": "H3_incorrect_symbolic_knowledge",
+  "lambda": 0.5,
+  "validation_path": "data/generated/moderate/val.csv",
+  "validation_size": 240,
+  "fractions": [
+    5,
+    10,
+    25,
+    50,
+    100
+  ],
+  "seed_start": 42,
+  "seed_end": 51,
+  "corruption": {
+    "routing": "reverse router/switch routing rule",
+    "all": "cyclic vendor mapping plus reversed routing and VLAN rules"
+  },
+  "reference": "correct symbolic fusion",
+  "note": "CI describes variation across training seeds on a fixed validation dataset."
+}

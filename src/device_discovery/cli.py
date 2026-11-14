@@ -10,7 +10,15 @@ from device_discovery.simulation.validation import validate_simulator
 def run_generation(args: argparse.Namespace) -> None:
     splits = build_device_splits(samples_per_class=args.samples_per_class, seed=args.seed)
 
-    materialize_observations(splits=splits, output_dir=args.output, seed=args.seed, scenario=args.scenario, cost_mode=args.cost_mode, initial_observation_count=args.initial_observations)
+    materialize_observations(
+        splits=splits,
+        output_dir=args.output,
+        seed=args.seed,
+        scenario=args.scenario,
+        cost_mode=args.cost_mode,
+        initial_observation_count=args.initial_observations,
+        max_initial_observation_count=args.max_initial_observations,
+    )
 
     print("Dataset generation completed.")
     print(f"Output: {args.output}")
@@ -93,7 +101,8 @@ def main() -> None:
     parser.add_argument("--samples-per-class", type=int, default=500, help="Number of devices per class in validation mode")
     parser.add_argument("--output", default="data/generated/moderate")
 
-    parser.add_argument("--initial-observations", type=int, default=2)
+    parser.add_argument("--initial-observations", type=int, default=2, help="Initial visible probes per device (minimum when --max-initial-observations is set)")
+    parser.add_argument("--max-initial-observations", type=int, default=None, help="If set, draw the initial probe count uniformly from [--initial-observations, this value]")
     args = parser.parse_args()
 
     if args.mode == "simulate":

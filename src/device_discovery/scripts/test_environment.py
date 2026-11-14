@@ -13,15 +13,13 @@ env = load_environment(data_dir, split="test")
 print("Device:", device_id)
 print("Before:", env.observe(device_id))
 
-# Thử probe chưa được thực hiện ban đầu.
+
 with open(f"{data_dir}/initial_attempts.json", encoding="utf-8") as file:
     import json
+
     attempted = set(json.load(file)[device_id])
 
-probe = next(
-    p for p in ProbeType
-    if p.value not in attempted
-)
+probe = next(p for p in ProbeType if p.value not in attempted)
 
 result = env.query(device_id, probe)
 

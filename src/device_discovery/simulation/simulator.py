@@ -3,7 +3,7 @@ import random
 from core.domain import DeviceProfile, ProbeResult
 from core.utils.constants.device_constants import DeviceRole, ProbeType, Vendor
 from device_discovery.simulation.probe_costs import HETEROGENEOUS_COSTS, UNIFORM_COSTS
-from device_discovery.simulation.profiles import ROLE_DISTRIBUTIONS, VENDOR_FIRMWARE_DISTRIBUTIONS
+from device_discovery.simulation.profiles import LLDP_ENABLED_PROBABILITY, ROLE_DISTRIBUTIONS, SNMP_AVAILABLE_PROBABILITY, VENDOR_FIRMWARE_DISTRIBUTIONS, VENDOR_HINT_UNKNOWN_PROBABILITY
 from device_discovery.simulation.scenarios import ScenarioConfig, get_scenario
 
 
@@ -29,8 +29,8 @@ class DeviceSimulator:
         features = {
             ProbeType.VENDOR: self._sample_vendor_hint(vendor),
             ProbeType.ROUTING: (self.rng.random() < distribution.routing_probability),
-            ProbeType.LLDP: self.rng.random() < 0.85,
-            ProbeType.SNMP: self.rng.random() < 0.90,
+            ProbeType.LLDP: self.rng.random() < LLDP_ENABLED_PROBABILITY,
+            ProbeType.SNMP: self.rng.random() < SNMP_AVAILABLE_PROBABILITY,
             ProbeType.INTERFACES: sample_category(self.rng, distribution.interface_bands),
             ProbeType.VLAN: (self.rng.random() < distribution.vlan_probability),
             ProbeType.FIRMWARE: sample_category(self.rng, VENDOR_FIRMWARE_DISTRIBUTIONS[vendor]),
@@ -39,8 +39,7 @@ class DeviceSimulator:
         return DeviceProfile(device_id=device_id, vendor=vendor, role=role, true_features=features)
 
     def _sample_vendor_hint(self, vendor: Vendor) -> str:
-        # 25% of devices have an ambiguous vendor hint
-        if self.rng.random() < 0.25:
+        if self.rng.random() < VENDOR_HINT_UNKNOWN_PROBABILITY:
             return "unknown"
 
         return vendor.value

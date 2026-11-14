@@ -11,17 +11,31 @@ FEATURE_NAMES = [probe.value for probe in ProbeType]
 
 
 def materialize_observations(
-    splits: dict[str, list[DeviceProfile]], output_dir: str | Path = "data/generated", seed: int = 42, scenario: str = "moderate", cost_mode: str = "heterogeneous", initial_observation_count: int = 2
+    splits: dict[str, list[DeviceProfile]],
+    output_dir: str | Path = "data/generated",
+    seed: int = 42,
+    scenario: str = "moderate",
+    cost_mode: str = "heterogeneous",
+    initial_observation_count: int = 2,
+    max_initial_observation_count: int | None = None,
 ) -> None:
     """
     Materialize synthetic device observations.
 
     CSV files contain only initially visible evidence.
     Hidden probe results are stored separately for oracle use.
+
+    If ``max_initial_observation_count`` is given, each device sees a
+    number of initial probes drawn uniformly from
+    [initial_observation_count, max_initial_observation_count].
+    Otherwise every device sees exactly ``initial_observation_count``.
     """
 
     if not 0 <= initial_observation_count <= len(ProbeType):
         raise ValueError("Invalid initial_observation_count")
+
+    if max_initial_observation_count is not None and not initial_observation_count <= max_initial_observation_count <= len(ProbeType):
+        raise ValueError("Invalid max_initial_observation_count")
 
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -61,10 +75,13 @@ def materialize_observations(
             probe_outcomes[device_id] = outcomes
 
             # Randomly choose initially available probes.
-            selected_probes = rng.sample(list(ProbeType), k=initial_observation_count)
-            initial_attempts[device_id] = [
-    probe.value for probe in selected_probes
-]
+            if max_initial_observation_count is None:
+                probe_count = initial_observation_count
+            else:
+                probe_count = rng.randint(initial_observation_count, max_initial_observation_count)
+
+            selected_probes = rng.sample(list(ProbeType), k=probe_count)
+            initial_attempts[device_id] = [probe.value for probe in selected_probes]
             row = {"device_id": device_id}
 
             # Training and validation labels are visible.
@@ -103,9 +120,17 @@ def materialize_observations(
 
     with (output_path / "probe_outcomes.json").open("w", encoding="utf-8") as file:
         json.dump(probe_outcomes, file, indent=2)
-    with (output_path / "initial_attempts.json").open("w",encoding="utf-8") as file:
+    with (output_path / "initial_attempts.json").open("w", encoding="utf-8") as file:
         json.dump(initial_attempts, file, indent=2)
-    manifest = {"seed": seed, "scenario": scenario, "cost_mode": cost_mode, "initial_observation_count": initial_observation_count, "split_counts": split_counts, "feature_names": FEATURE_NAMES}
+    manifest = {
+        "seed": seed,
+        "scenario": scenario,
+        "cost_mode": cost_mode,
+        "initial_observation_count": initial_observation_count,
+        "max_initial_observation_count": max_initial_observation_count,
+        "split_counts": split_counts,
+        "feature_names": FEATURE_NAMES,
+    }
 
     with (output_path / "manifest.json").open("w", encoding="utf-8") as file:
         json.dump(manifest, file, indent=2)
